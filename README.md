@@ -1,8 +1,8 @@
 Puji (Remake)
 ===============
 
-### Puji is a game [originally created](http://www.patkemp.com/wp-gallery/games/puji.html "Puji") by Alexander Jhin, Matt McKnett and Pat Kemp.
-We decided to create a remake of it and develop it via GitHub. Stay tuned.
+##### Puji is a game [originally created](http://www.patkemp.com/wp-gallery/games/puji.html "Puji") by Alexander Jhin, Matt McKnett and Pat Kemp.
+##### We decided to create a remake of it and develop it via GitHub. Stay tuned.
 
 Behind the scenes
 ---------------
