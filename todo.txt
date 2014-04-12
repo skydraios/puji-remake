@@ -1,0 +1,2 @@
+TODO:
+    - Each puji must have: {alive or dead, time since death, score, isPlayer}

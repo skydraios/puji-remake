@@ -1,0 +1,8 @@
+@-webkit-keyframes flash {
+    0% {
+        text-shadow: 1px -1px 50px transparent;
+    }
+    50% {
+        text-shadow: 1px -1px 50px white;
+    }
+}
