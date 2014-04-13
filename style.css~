@@ -54,7 +54,7 @@ canvas {
 }
 
 #popup.show {
-    opacity: .95;
+    opacity: .9;
     top: 40%;
 }
 

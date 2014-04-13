@@ -1,4 +1,4 @@
-var PLAYER_W = 24, PLAYER_H = 24;
+var PLAYER_W = 18, PLAYER_H = 24;
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var W = 640, H = 480 ;

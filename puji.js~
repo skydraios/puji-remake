@@ -67,11 +67,6 @@ function addPoint(i) {
     updateScores();
 }
 
-function restart() {
-    newGame();
-    startGame(PLAYER_N);
-}
-
 startGame(4);
 
 function integratePujis(dt) {

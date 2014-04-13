@@ -35,7 +35,7 @@ Player.prototype = {
         for(var i = MAX_PLAYERS - PLAYER_N; i < PUJI_N; ++i) {
             if(pujis[i].isDead || (pujis[i].isPlayer && this.playerIndex == pujis[i].playerIndex)) continue;
             if(this.location.distance(pujis[i].location) < FIRE_DISTANCE) {
-                if(pujis[i].isPlayer) addPoint(this.playerIndex);
+                if(pujis[i].isPlayer) addPoin(this.playerIndex);
                 pujis[i].die();
             }
         }
