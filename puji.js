@@ -7,9 +7,35 @@ var PLAYER_SIZE_W = PLAYER_W / W,
     PLAYER_N,
     PUJI_N = 32,
     t = new Date() | 0,
-    FIRE_DISTANCE = 0.06;
-    
+    t_begin = new Date() | 0,
+    FIRE_DISTANCE = 0.06
+    countDead=0;
+
 var pujis = [];
+
+var NextDeathTime=-1;
+
+function SuddenDeath()
+{
+    var killme = 1;
+    if(NextDeathTime<t)
+    {
+        if(NextDeathTime!=-1)
+        {
+            killme = MAX_PLAYERS + Math.round(Math.random() * (PUJI_N+countDead));
+            pujis[killme].die();
+            pujis[killme].noResurrect=1;
+        }
+
+        NextDeathTime = t + Math.random() * 5000 + 3000;
+    }
+}
+
+function CheckForSuddenDeath()
+{
+    if(t>t_begin+60000)
+        SuddenDeath();
+}
 
 function startGame(players) {
     PLAYER_N = players;
@@ -46,7 +72,7 @@ function startGame(players) {
             )
         );
     }
-    console.log(pujis);
+//    console.log(pujis);
     for(var i = MAX_PLAYERS; i < PUJI_N; ++i) {
         pujis.push(
             new Player(
@@ -75,7 +101,7 @@ function restart() {
 startGame(4);
 
 function integratePujis(dt) {
-    var countDead = 0;
+    countDead = 0;
     for(var i = MAX_PLAYERS - PLAYER_N; i < PUJI_N; ++i) {
         if(pujis[i].isDead && pujis[i].isPlayer) ++countDead;
         pujis[i].integrate(dt);
@@ -85,7 +111,7 @@ function integratePujis(dt) {
 
 function AIBots() {
     for(var i = MAX_PLAYERS; i < PUJI_N; ++i) {
-        if(pujis[i].isDead) {
+        if(pujis[i].isDead && !pujis[i].noResurrect) {
             if(!pujis[i].isPlayer && pujis[i].resurrectTime < 0) {
                 pujis[i].resurrectTime = t + Math.random() * 5000 + 3000;
                 console.log(i + " resurrect time set to: " + pujis[i].resurrectTime);
@@ -108,6 +134,7 @@ function AIBots() {
 function tick(dt) {
     AIBots();
     integratePujis(dt);
+    CheckForSuddenDeath();
     render();
 }
 
