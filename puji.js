@@ -21,7 +21,7 @@ function SuddenDeath()
     {
         if(NextDeathTime!=-1)
         {
-            killme = MAX_PLAYERS + Math.round(Math.random() * (PUJI_N - MAX_PLAYERS));
+            killme = MAX_PLAYERS + Math.round(Math.random() * PUJI_N);
             pujis[killme].die();
             pujis[killme].noResurrect=1;
         }
