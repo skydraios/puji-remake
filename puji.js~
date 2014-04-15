@@ -7,7 +7,7 @@ var PLAYER_SIZE_W = PLAYER_W / W,
     PLAYER_N,
     PUJI_N = 32,
     FIRE_DISTANCE = 0.06,
-    SUDDEN_DEATH_AFTER = 60, // in seconds
+    SUDDEN_DEATH_AFTER = 05, // in seconds
     COUNT_DEAD = 0,
     SUDDEN_DEATH = false,
     GAME_ENDED = false,
