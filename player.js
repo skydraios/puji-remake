@@ -8,6 +8,7 @@ function Player(location, velocity, face, isDead, isPlayer, playerIndex, sprite)
     this.isDead = isDead;
     this.resurrectTime = -1;
     this.sprite = sprite;
+    this.noResurrect = 0;
 }
 
 Player.prototype = {
