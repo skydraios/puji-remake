@@ -6,8 +6,12 @@
     padding: 0;
 }
 
-body {
+html, body {
     background-color: #282722;
+    font: normal 18px 'Roboto Slab', serif;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
 canvas {
@@ -20,6 +24,23 @@ canvas {
     top: 50%;
     width: 640px;
     height: 480px;
+}
+
+#timer {
+    color: white;
+    font-size: 2em;
+    left: 50%;
+    margin-left: -320px;
+    margin-top: 256px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 640px;
+    height: 480px;
+}
+
+#timer .red {
+    color: #F44;
 }
 
 #popup {
@@ -54,7 +75,7 @@ canvas {
 }
 
 #popup.show {
-    opacity: .95;
+    opacity: .9;
     top: 40%;
 }
 
@@ -64,14 +85,13 @@ canvas {
 }
 
 .score {
-    display: inline;
     font-size: 1.22em;
 }
 
 #scoreboard {
     color: white;
     margin-top: -250px;
-    padding: 10px;
+    padding: .5em 1em;
     position: absolute;
     top: 50%;
 }

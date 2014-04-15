@@ -1,9 +1,9 @@
-function Player(location, velocity, face, isDead, isPlayer, playerIndex, sprite) {
+function Player(index, location, velocity, face, isDead, isPlayer, sprite) {
+    this.index = index;
     this.location = location;
     this.velocity = velocity;
     this.face = face;
     this.isPlayer = isPlayer;
-    this.playerIndex = playerIndex;
     this.stopTime = -1;
     this.isDead = isDead;
     this.resurrectTime = -1;
@@ -34,22 +34,25 @@ Player.prototype = {
     fire: function() {
         if(this.isDead) return;
         for(var i = MAX_PLAYERS - PLAYER_N; i < PUJI_N; ++i) {
-            if(pujis[i].isDead || (pujis[i].isPlayer && this.playerIndex == pujis[i].playerIndex)) continue;
+            if(pujis[i].isDead || (pujis[i].isPlayer && this.index == pujis[i].index)) continue;
             if(this.location.distance(pujis[i].location) < FIRE_DISTANCE) {
-                if(pujis[i].isPlayer) addPoint(this.playerIndex);
+                if(pujis[i].isPlayer) addPoint(this.index);
                 pujis[i].die();
             }
         }
     },
     die: function() {
+        if(this.isPlayer) {
+            ++COUNT_DEAD;
+        }
         this.isDead = true;
         this.deadTime = 0;
-        this.sprite = new Sprite('images/dead.png', new Vector(PLAYER_W, PLAYER_H));
+        changeImageToDead(this);
     },
     resurrect: function() {
         this.isDead = false;
         this.deadTime = -1;
         this.resurrectTime = -1;
-        this.sprite = new Sprite('images/puji.png', new Vector(PLAYER_W, PLAYER_H));
+        changeImageToAlive(this);
     }
 };

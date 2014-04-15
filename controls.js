@@ -66,8 +66,9 @@ document.body.onkeydown = function(e) {
         case 39:
             pujis[3].velocity = new Vector(1, 0);
             break;
-        case 12:
-            
+        case 13:
+            restart();
+            break;
     }
 };
 

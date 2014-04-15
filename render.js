@@ -11,6 +11,14 @@ background.src = 'images/puji_room.jpg';
 canvas.width = W;
 canvas.height = H;
 
+function changeImageToDead(el) {
+    el.sprite = new Sprite('images/dead.png', new Vector(PLAYER_W, PLAYER_H));
+}
+
+function changeImageToAlive(el) {
+    el.sprite = new Sprite('images/puji.png', new Vector(PLAYER_W, PLAYER_H));
+}
+
 function updateScores() {
     for(var i = 0; i < PLAYER_N; ++i) {
         var el = document.getElementById("player" + i);
@@ -29,15 +37,13 @@ function removePopup() {
     el.className = '';
 }
 
-function newGame() {
+function showNewGame() {
     removePopup();
-    wi = window.setInterval(mainLoop, FPS);
 }
 
-function endGame() {
+function showEndGame() {
     updateScores();
     popup();
-    clearInterval(wi);
 }
 
 function drawPujis() {
@@ -57,9 +63,28 @@ function clearCanvas() {
 //    ctx.drawImage(background, -PLAYER_W / 2, -PLAYER_H / 2);
 }
 
+function updateTimer() {
+    if(SUDDEN_DEATH) return;
+    var el = document.getElementById("timer");
+    var mins, secs, millis;
+    millis = t_begin + SUDDEN_DEATH_AFTER * 1000 - t;
+    if(millis <= 0) {
+        el.innerHTML = '<span class="red">SUDDEN DEATH!</span>';
+        SUDDEN_DEATH = true;
+        return;
+    }
+    mins = Math.floor(millis / 60000);
+    millis -= mins * 60000;
+    secs = Math.floor(millis / 1000);
+    millis -= secs * 1000;
+    if(secs < 10) secs = '0' + secs;
+    el.innerHTML = mins + ':' + secs;
+}
+
 function render() {
     clearCanvas();
     drawPujis();
+    updateTimer();
 }
 
 function rect(start, size) {
