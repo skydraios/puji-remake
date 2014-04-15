@@ -8,7 +8,8 @@ var PLAYER_SIZE_W = PLAYER_W / W,
     PUJI_N = 32,
     t = new Date() | 0,
     t_begin = new Date() | 0,
-    FIRE_DISTANCE = 0.06;
+    FIRE_DISTANCE = 0.06
+    countDead=0;
 
 var pujis = [];
 
@@ -21,7 +22,7 @@ function SuddenDeath()
     {
         if(NextDeathTime!=-1)
         {
-            killme = MAX_PLAYERS + Math.round(Math.random() * PUJI_N);
+            killme = MAX_PLAYERS + Math.round(Math.random() * (PUJI_N+countDead));
             pujis[killme].die();
             pujis[killme].noResurrect=1;
         }
@@ -100,7 +101,7 @@ function restart() {
 startGame(4);
 
 function integratePujis(dt) {
-    var countDead = 0;
+    countDead = 0;
     for(var i = MAX_PLAYERS - PLAYER_N; i < PUJI_N; ++i) {
         if(pujis[i].isDead && pujis[i].isPlayer) ++countDead;
         pujis[i].integrate(dt);
